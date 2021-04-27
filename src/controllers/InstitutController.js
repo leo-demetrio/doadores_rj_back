@@ -24,7 +24,7 @@ module.exports = {
         return res.status(200).json(instituts);
         }catch(e) {
             console.log(e + "+++ controller Institut");
-            return res.status(400).json({error: 'Não foi possível encontrar os institutos corretos'}); 
+            return res.status(400).json({error: {message: 'Não foi possível encontrar os institutos corretos'}}); 
            
         }
     },
