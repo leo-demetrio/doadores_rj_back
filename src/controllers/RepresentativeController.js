@@ -18,7 +18,7 @@ module.exports = {
             { association: 'address' },
             { association: 'donors' },
         ]});
-        if(!Representatives) return res.status(400).json({error: 'Não foi possível encontrar os Representativeos'});        
+        if(!Representatives) return res.status(400).json({error: { message:'Não foi possível encontrar os Representativeos'}});        
         return res.status(200).json(Representatives);
         }catch(e) {
             return res.status(400).json({error: 'Não foi possível encontrar os Representativeos'}); 
