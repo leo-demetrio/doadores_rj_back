@@ -13,13 +13,14 @@ const { v4: uuidv4 } = require('uuid');
 module.exports = {
     async index(req,res) {
         try {  
-        const instituts = await repository.getAll(Institut,{ include: [
-            { association: 'phone' },
-            { association: 'address' },
-            { association: 'donors' },
-            { association: 'representatives' },
-            { association: 'adminInstitut' },
-        ]});       
+        // const instituts = await repository.getAll(Institut,{ include: [
+        //     { association: 'phone' },
+        //     { association: 'address' },
+        //     { association: 'donors' },
+        //     { association: 'representatives' },
+        //     { association: 'adminInstitut' },
+        // ]});   
+        const instituts = await Institut.findAll();    
         if(!instituts) return res.status(400).json({error: 'Não foi possível encontrar os institutos no banco'});        
         return res.status(200).json(instituts);
         }catch(e) {
