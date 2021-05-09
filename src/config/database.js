@@ -1,6 +1,6 @@
 console.log('.env',process.env.DATABASE_URL)
 module.exports = {
-    "use_env_variable": "DATABASE_URL",
+   "production": { "use_env_variable": "DATABASE_URL",
     user: "uicpyntyelhrdm",
     password: "c24027f8c4b599452b78df3fcff171fc851ba179e0703ce17d428d6a7b192f55",
     database: "d76gff4q0tb1bn",
@@ -13,7 +13,7 @@ module.exports = {
         timestamps: true,
         underscored: true,
     }
-
+   }
 }
 // module.exports = {
 //     dialect: 'postgres',
