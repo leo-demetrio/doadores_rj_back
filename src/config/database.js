@@ -1,8 +1,8 @@
 module.exports = {
-    dialect: 'mysql',
+    dialect: 'postgres',
     host: 'localhost',
-    username: 'root',
-    password: '',
+    username: 'postgres',
+    password: 'leoppostegres',
     database: process.env.NODE_ENV === "test" ? "syscondoe_test" : 'doadores_rj',
     define: {
         timestamps: true,
@@ -10,3 +10,15 @@ module.exports = {
     }
 
 }
+// module.exports = {
+//     dialect: 'postgres',
+//     host: 'localhost',
+//     username: 'postgres',
+//     password: 'leoppostegres',
+//     database: process.env.NODE_ENV === "test" ? "syscondoe_test" : 'doadores_rj',
+//     define: {
+//         timestamps: true,
+//         underscored: true,
+//     }
+
+// }
