@@ -1,14 +1,7 @@
 console.log('.env',process.env.DATABASE_URL)
 module.exports = {
-    type: 'postgres',
-    dialect: 'postgres',
-    url: process.env.DATABASE_URL,
-    ssl: true,
-    define: {
-        timestamps: true,
-        underscored: true,
-    }
-   
+    "type": 'postgres',
+    "url": process.env.DATABASE_URL,   
 }
 // module.exports = {
 //     user: "uicpyntyelhrdm",
