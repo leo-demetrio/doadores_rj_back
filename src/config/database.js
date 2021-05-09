@@ -1,7 +1,8 @@
 module.exports = {
     type: 'postgres',
+    dialect: 'postgres',
     url: process.env.DTABASE_URL,
-    database: process.env.NODE_ENV === "test" ? "syscondoe_test" : 'doadores_rj',
+    ssl: true,
     define: {
         timestamps: true,
         underscored: true,
