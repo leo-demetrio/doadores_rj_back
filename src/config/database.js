@@ -1,8 +1,6 @@
 module.exports = {
-    dialect: 'postgres',
-    host: 'localhost',
-    username: 'postgres',
-    password: 'leoppostegres',
+    type: 'postgres',
+    url: process.env.DTABASE_URL,
     database: process.env.NODE_ENV === "test" ? "syscondoe_test" : 'doadores_rj',
     define: {
         timestamps: true,
