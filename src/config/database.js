@@ -1,7 +1,8 @@
+console.log('.env',process.env.DATABASE_URL)
 module.exports = {
     type: 'postgres',
     dialect: 'postgres',
-    url: process.env.DTABASE_URL,
+    url: process.env.DATABASE_URL,
     ssl: true,
     define: {
         timestamps: true,
