@@ -1,17 +1,25 @@
 console.log('.env',process.env.DATABASE_URL)
+
 module.exports = {
-        dialect: 'postgres',
-        host: 'localhost',
-        username: 'postgres',
-        // password: 'leoppostegres',
-        password: 'leoppostegres',
-        database: process.env.NODE_ENV === "test" ? "syscondoe_test" : 'doadores_rj',
-        define: {
-            timestamps: true,
-            underscored: true,
-        }
-    
+    dialect: 'postgres',
+    url: process.env.DATABASE_URL,
+    ssl: {
+        "rejectUnauthorized": false
     }
+}
+// module.exports = {
+//         dialect: 'postgres',
+//         host: 'localhost',
+//         username: 'postgres',
+//         // password: 'leoppostegres',
+//         password: 'leoppostegres',
+//         database: process.env.NODE_ENV === "test" ? "syscondoe_test" : 'doadores_rj',
+//         define: {
+//             timestamps: true,
+//             underscored: true,
+//         }
+    
+//     }
 
 
 // module.exports = {
