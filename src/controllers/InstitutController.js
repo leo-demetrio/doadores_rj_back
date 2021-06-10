@@ -8,19 +8,13 @@ const { validationResult } = require('express-validator');
 const institutRepository = require('../database/repositories/institutRepository');
 const { v4: uuidv4 } = require('uuid');
 const InstitutClass = require('../models/typeValidations/InstitutTypeValidadion');
-
+const Institut = require('../models/Institut');
 
 module.exports = {
     async index(req,res) {
         try {  
-            const instituts = await repositoryInstitut.getAll(Institut,{ include: [
-            { association: 'phone' },
-            { association: 'address' },
-            { association: 'donors' },
-            { association: 'representatives' },
-            { association: 'adminInstitut' },
-        ]});    
-            if(!instituts) return res.status(200).json({error: 'Não foi possível encontrar os institutos no banco'});        
+            const instituts = await institutRepository.getAll();    
+            if(!instituts) return res.status(400).json({error: 'Não foi possível encontrar os institutos no banco'});        
             return res.status(200).json(instituts);
         }catch(e) {
             console.log(e + "++++ controller Institut");
@@ -30,38 +24,29 @@ module.exports = {
     },
     async show(req,res) {
         try { 
-        const errors = validationResult(req);          
-        if(!errors.isEmpty()) return res.status(400).json(errors);
-        //mudar para repository
-        const instituts = await Institut.findByPk(req.params.id, { include: [
-            { association: 'phone' },
-            { association: 'address' },
-            { association: 'donors' },
-            { association: 'representatives' },
-            { association: 'adminInstitut' },
-        ]});
-        if(!instituts) return res.status(400).json({error: 'Não foi possível encontrar o instituto'});        
-        return res.status(200).json(instituts);
+            const errors = validationResult(req);          
+            if(!errors.isEmpty()) return res.status(400).json(errors);
+            const instituts = await institutRepository.getOne(req.params.id);
+            if(!instituts) return res.status(404).json({error: 'Não foi possível encontrar o instituto'});        
+            return res.status(200).json(instituts);
         }catch(e) {
             console.log(e);
-            return res.status(400).json({error: 'Não foi possível encontrar os institutos'}); 
-            
+            return res.status(400).json({error: 'Não foi possível encontrar os institutos'});             
         }
     },
     async search(req,res) {
         try {
-        //return console.log(req.body) 
-        const errors = validationResult(req);          
-        if(!errors.isEmpty()) return res.status(400).json(errors);      
-        const instituts = await repository.getAllSearch(Institut,{where: { name:{[Op.like]: '%'+req.body.value+'%'}}});
-        // return console.log(instituts);
-        if(!instituts) return res.status(400).json({error: 'Não foi possível encontrar o instituto'}); 
-        return res.status(200).json(instituts);
+            //return console.log(req.body) 
+            const errors = validationResult(req);          
+            if(!errors.isEmpty()) return res.status(400).json(errors);      
+            const instituts = await institutRepository.getAllSearch(Institut,{where: { name:{[Op.like]: '%'+req.body.value+'%'}}});
+            // return console.log(instituts);
+            if(!instituts) return res.status(400).json({error: 'Não foi possível encontrar o instituto'}); 
+            return res.status(200).json(instituts);
 
         }catch(e) {
             console.log(e);
-            return res.status(400).json({error: 'Não foi possível encontrar os institutos'}); 
-            
+            return res.status(400).json({error: 'Não foi possível encontrar os institutos'});             
         }
     },
     async donation(req,res) {

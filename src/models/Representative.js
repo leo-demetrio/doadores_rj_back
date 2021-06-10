@@ -7,7 +7,8 @@ class Representative extends Model {
             name: DataTypes.STRING,
             email: DataTypes.STRING,
             cpf: DataTypes.STRING,
-            number_social: DataTypes.STRING
+            //IMPLEMENTAR
+            //number_social: DataTypes.STRING
         }, {
             sequelize
         })

@@ -18,9 +18,18 @@ module.exports.registerInstitut = async (data) => {
     
 
 }
-module.exports.getAll = async (model,association) => {
+module.exports.getAll = async (association) => {
     try{
-    result = await InstitutfindAll(association);
+        let association = [
+            { association: 'phone' },
+            { association: 'address' },
+            { association: 'donors' },
+            { association: 'representatives' },
+            { association: 'adminInstitut' },
+        ];
+       
+    let result = await Institut.findAll({ include: association });
+    // result = await InstitutfindAll(association);
     //return console.log(result);
     return result;
     }catch(e) {
@@ -30,18 +39,25 @@ module.exports.getAll = async (model,association) => {
 module.exports.getAllSearch = async (model,where) => {
     try{
     //return console.log(where);
-    result = await InstitutfindAll(where);
+    result = await Institut.findAll(where);
     //return console.log(result);
     return result;
     }catch(e) {
         console.log(e);
     }
 }
-module.exports.getOne = async (model) => {
+
+
+module.exports.getOne = async (id) => {
     try{
-    result = await Institut.findAll({where: { cnpj: model.cnpj }});
-    //return console.log(result);
-    return result;
+        const instituts = await Institut.findByPk(id, { include: [
+            { association: 'phone' },
+            { association: 'address' },
+            { association: 'donors' },
+            { association: 'representatives' },
+            { association: 'adminInstitut' },
+        ]});
+    return instituts;
     }catch(e) {
         console.log(e);
     }
