@@ -17,9 +17,9 @@ router.post('/instituts/search',[
     //check('value').isString().withMessage('Nome não enviado!!'),   
     //check('representativeId').isNumeric().withMessage('Id não enviado!!'),   
 ], InstitutController.search);
-router.post('/instituts/donor',[   
-    check('value').isNumeric().withMessage('Nome não enviado!!'),   
-], InstitutController.donation);
+// router.post('/instituts/donor',[   
+//     check('value').isNumeric().withMessage('Nome não enviado!!'),   
+// ], InstitutController.donation);
 router.delete('/instituts', InstitutController.delete);
 router.get('/instituts', InstitutController.index);
 router.get('/instituts/:id',[
